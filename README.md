@@ -1,5 +1,6 @@
 # FPC-UserAgentAuto-Rotate-Generate
 ## Как устроен плагин
+<img width="1024" height="1024" alt="cab98d32-180e-4547-8e0b-5404317c010e" src="https://github.com/user-attachments/assets/7282d493-4630-4f67-84f1-c32ea12a78b0" />
 
 `FunPay User-Agent Rotator` — это плагин для `FunPayCardinal`, который не просто хранит один `User-Agent`, а управляет всем циклом работы с ним: генерацией, ротацией, проверкой, импортом собственных строк и областью применения.
 
