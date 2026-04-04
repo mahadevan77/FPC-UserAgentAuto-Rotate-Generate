@@ -25,6 +25,7 @@
 Внутри плагин логически делится на несколько основных блоков.
 
 #### 1. Настройки
+<img width="437" height="805" alt="image" src="https://github.com/user-attachments/assets/c76b5701-8030-4fbb-bd29-ff386cbb45f8" />
 
 Плагин хранит:
 
